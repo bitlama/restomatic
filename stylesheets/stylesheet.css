@@ -342,3 +342,9 @@ a:hover {
         font-size: 0.9rem;
     }
 }
+
+
+
+.faq .question {
+    font-style: italic;
+}
