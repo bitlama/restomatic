@@ -13,7 +13,7 @@
         <section class="page-header">
             <h1 class="project-name">Restomatic</h1>
             <h2 class="project-tagline">An easy to use GUI for RESTful services</h2>
-            <a href="https://github.com/bitlama/restomatic/releases/download/v14/restomatic.jar"
+            <a href="https://github.com/bitlama/restomatic/releases/download/v15/restomatic.jar"
                class="btn">Download executable JAR</a>
         </section>
 
@@ -24,10 +24,11 @@
             <ul>
                 <li>Define path and query parameters</li>
                 <li>Define request headers</li>
-                <li>Misc request body types</li>
-                <li>The request hierarchy is organized dynamically as you type request URL</li>
+                <li>Misc request body types: text, form, multipart, file</li>
+                <li>The request hierarchy is organized dynamically as you change the request path</li>
                 <li>Seamless search</li>
                 <li>Temporary request templates to experiment without touching the original template</li>
+                <li>View JSON response as tree</li>
             </ul>
 
             <h2>Endpoints</h2>
@@ -41,8 +42,8 @@
             <h2>Authenticators</h2>
             <ul>
                 <li>HTTP Basic authenticator</li>
-                <li>JASIG CAS form-based and RESTful authenticators</li>
                 <li>Custom scenario authenticator using JavaScript</li>
+                <li>JASIG CAS form-based and RESTful authenticators</li>
             </ul>
 
             <h2>Profiles</h2>
@@ -82,8 +83,8 @@
                     <div class="answer">
                         <p>
                             It would be great to build a better project info page to replace this generated one.
-                            Also feel free to <a href="https://github.com/bitlama/restomatic/issues/new">post an issue</a>
-                            if you've managed to find a bug or wish to offer a feature.
+                            Also feel free to <a href="https://github.com/bitlama/restomatic/issues/new">report</a>
+                            bugs or feature requests.
                         </p>
                     </div>
                 </li>
@@ -91,10 +92,10 @@
                     <div class="question">Is there an example workspace file?</div>
                     <div class="answer">
                         <p>
-                            Check <a href="demo/openshift">this one</a>. This example showcases a subset of
-                            <a href="https://www.openshift.com">Openshift</a> APIs.
-                            After opening the workspace file don't forget to change the value of the "Authorization" header
-                            inside the "openshift online" endpoint.
+                            Check <a href="demo/github">this one</a>. This example showcases a subset of
+                            <a href="https://developer.github.com/v3/">GitHub REST API</a>.
+                            After opening the workspace file change the value of "token" and "userId" parameters
+                            inside the "auth info" profile.
                         </p>
                     </div>
                 </li>
