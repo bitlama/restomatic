@@ -107,6 +107,22 @@
             <img src="images/overview-endpoint.png"/>
 
 
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = 'https://bitlama.github.io/restomatic/';
+                    this.page.identifier = 'home';
+                };
+                (function () {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://restomatic.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
             <footer class="site-footer">
                 <span class="site-footer-owner"><a href="https://github.com/bitlama/restomatic">Restomatic</a> is maintained by <a
                         href="https://github.com/bitlama">Ivan Pavlov</a>.</span>
@@ -117,7 +133,6 @@
             </footer>
 
         </section>
-
 
     </body>
 </html>
