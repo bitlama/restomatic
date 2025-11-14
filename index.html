@@ -1,120 +1,185 @@
 <!DOCTYPE html>
-<html lang="en-us" xmlns="http://www.w3.org/1999/html">
+<html lang="en-us">
     <head>
         <meta charset="UTF-8">
         <title>Restomatic: Intuitive GUI for RESTful services</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+        <script src="javascripts/lightbox.js" defer></script>
     </head>
     <body>
         <section class="page-header">
-            <h1 class="project-name">Restomatic</h1>
-            <h2 class="project-tagline">Intuitive GUI for RESTful services</h2>
-            <a href="https://github.com/bitlama/restomatic/releases/download/v36/restomatic.jar"
-               class="btn">Download executable JAR</a>
-            <a href="https://github.com/bitlama/restomatic/releases/download/v36/Restomatic.dmg"
-               class="btn">Download DMG for macOS</a>
+            <div class="header-content">
+                <h1 class="project-name">Restomatic</h1>
+                <h2 class="project-tagline">Intuitive GUI for RESTful services</h2>
+                <div class="download-buttons">
+                    <a href="https://github.com/bitlama/restomatic/releases/download/v36/restomatic.jar"
+                       class="btn btn-primary">
+                        <span class="btn-icon">⬇</span>
+                        Download JAR
+                    </a>
+                    <a href="https://github.com/bitlama/restomatic/releases/download/v36/Restomatic.dmg"
+                       class="btn btn-secondary">
+                        <span class="btn-icon">⬇</span>
+                        Download for macOS
+                    </a>
+                </div>
+            </div>
         </section>
 
         <section class="main-content">
-            <h1>Features</h1>
-
-            <h2>Request templates</h2>
-            <ul>
-                <li>Define path and query parameters.</li>
-                <li>Define request headers.</li>
-                <li>Support various request body types: text, form, multipart, and file.</li>
-                <li>Dynamically organise the request hierarchy as the request path changes.</li>
-                <li>Perform seamless searches.</li>
-                <li>Use temporary request templates to experiment without modifying the original template.</li>
-                <li>View JSON responses as a tree.</li>
-            </ul>
-
-            <h2>Targets</h2>
-            <ul>
-                <li>Define headers to apply to every request sent to a target.</li>
-                <li>Assign colors to visually distinguish each target.</li>
-                <li>Override headers for specific context paths within a target.</li>
-                <li>View and modify cookies received during request execution.</li>
-            </ul>
-
-            <h2>Authenticators</h2>
-            <ul>
-                <li>HTTP Basic authentication.</li>
-                <li>Custom authentication scenarios using JavaScript.</li>
-            </ul>
-
-            <h2>Profiles</h2>
-            <ul>
-                <li>Store environment-specific data in profile variables.</li>
-                <li>Enable multiple profiles (e.g., "User Joe" and "Target dev2").</li>
-                <li>Substitute profile variables using Handlebars expressions.</li>
-            </ul>
-
-            <h1>FAQ</h1>
-            <ul class="faq">
-                <li>
-                    <div class="question">How to run Restomatic?</div>
-                    <div class="answer">
-                        <p>
-                            Restomatic requires the latest version of
-                            <a href="https://www.oracle.com/java/technologies/javase-downloads.html">Java 11</a> to run.
-                        </p>
-                        <p>
-                            Execute the following command after installing Java Runtime Environment:
-                            <pre>java -jar restomatic.jar</pre>
-                        </p>
+            <div class="screenshots-section">
+                <div class="screenshots-grid">
+                    <div class="screenshot-item">
+                        <img src="images/request.png" alt="Request template" class="screenshot-img" data-src="images/request.png">
                     </div>
-                </li>
-                <li>
-                    <div class="question">Does Restomatic collect any user data?</div>
-                    <div class="answer">
-                        <p>
-                            Restomatic regularly checks for updates by querying GitHub for the latest release.
-                            A paranoid person might worry that sensitive information is being sent during the update check.
-                            But don't worry — just open the application settings (Workspace → Settings) and disable update checks.
-                        </p>
+                    <div class="screenshot-item">
+                        <img src="images/endpoint.png" alt="Endpoint" class="screenshot-img" data-src="images/endpoint.png">
                     </div>
-                </li>
-                <li>
-                    <div class="question">How can I help?</div>
-                    <div class="answer">
-                        <p>
-                            Feel free to <a href="https://github.com/bitlama/restomatic/issues/new">report</a>
-                            bugs or feature requests.
-                        </p>
+                </div>
+            </div>
+
+            <!-- Lightbox Modal -->
+            <div id="lightbox-modal" class="lightbox-modal">
+                <span class="lightbox-close">&times;</span>
+                <img class="lightbox-content" id="lightbox-img">
+                <div class="lightbox-caption" id="lightbox-caption"></div>
+            </div>
+
+            <div class="features-section">
+                <h1 class="section-title">Features</h1>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h2>Request templates</h2>
+                        </div>
+                        <div class="feature-content">
+                            <ul>
+                                <li>Define path and query parameters.</li>
+                                <li>Define request headers.</li>
+                                <li>Support various request body types: text, form, multipart, and file.</li>
+                                <li>Dynamically organise the request hierarchy as the request path changes.</li>
+                                <li>Perform seamless searches.</li>
+                                <li>Use temporary request templates to experiment without modifying the original template.</li>
+                                <li>View JSON responses as a tree.</li>
+                            </ul>
+                        </div>
                     </div>
-                </li>
-                <li>
-                    <div class="question">Is there an example workspace file?</div>
-                    <div class="answer">
-                        <p>
-                            Check <a href="demo/github">this one</a>. This example showcases a subset of
-                            <a href="https://developer.github.com/v3/">GitHub REST API</a>.
-                            After opening the workspace file, change the values of the "token" and "userId" parameters
-                            inside the "auth info" profile.
-                        </p>
+
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h2>Targets</h2>
+                        </div>
+                        <div class="feature-content">
+                            <ul>
+                                <li>Define headers to apply to every request sent to a target.</li>
+                                <li>Assign colors to visually distinguish each target.</li>
+                                <li>Override headers for specific context paths within a target.</li>
+                                <li>View and modify cookies received during request execution.</li>
+                            </ul>
+                        </div>
                     </div>
-                </li>
-            </ul>
 
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h2>Authenticators</h2>
+                        </div>
+                        <div class="feature-content">
+                            <ul>
+                                <li>HTTP Basic authentication.</li>
+                                <li>Custom authentication scenarios using JavaScript.</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <h1>Demo</h1>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h2>Profiles</h2>
+                        </div>
+                        <div class="feature-content">
+                            <ul>
+                                <li>Store environment-specific data in profile variables.</li>
+                                <li>Enable multiple profiles (e.g., "User Joe" and "Target dev2").</li>
+                                <li>Substitute profile variables using Handlebars expressions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <video controls width="100%">
-                <source src="images/example-workflow.webm" type="video/webm">
-                Your browser doesn't support embedded videos.
-            </video>
+            <div class="faq-section">
+                <h1 class="section-title">FAQ</h1>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>How to run Restomatic?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>
+                                Restomatic requires the latest version of
+                                <a href="https://www.oracle.com/java/technologies/javase-downloads.html">Java 11</a> to run.
+                            </p>
+                            <p>
+                                Execute the following command after installing Java Runtime Environment:
+                            </p>
+                            <pre><code>java -jar restomatic.jar</code></pre>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Does Restomatic collect any user data?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>
+                                Restomatic regularly checks for updates by querying GitHub for the latest release.
+                                A paranoid person might worry that sensitive information is being sent during the update check.
+                                But don't worry — just open the application settings (Workspace → Settings) and disable update checks.
+                            </p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>How can I help?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>
+                                Feel free to <a href="https://github.com/bitlama/restomatic/issues/new">report</a>
+                                bugs or feature requests.
+                            </p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Is there an example workspace file?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>
+                                Check <a href="demo/github">this one</a>. This example showcases a subset of
+                                <a href="https://developer.github.com/v3/">GitHub REST API</a>.
+                                After opening the workspace file, change the values of the "token" and "userId" parameters
+                                inside the "auth info" profile.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
 
-            <h1>Screenshots</h1>
-
-            <img src="images/request.png" alt="Request template">
-            <img src="images/endpoint.png" alt="Endpoint">
+            <div class="demo-section">
+                <h1 class="section-title">Demo</h1>
+                <div class="video-container">
+                    <video controls>
+                        <source src="images/example-workflow.webm" type="video/webm">
+                        Your browser doesn't support embedded videos.
+                    </video>
+                </div>
+            </div>
 
         </section>
-
     </body>
 </html>
