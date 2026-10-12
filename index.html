@@ -1,31 +1,52 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-GB">
     <head>
         <meta charset="UTF-8">
-        <title>Restomatic: Intuitive GUI for RESTful services</title>
+        <title>Restomatic: GUI for RESTful APIs</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-        <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet' type='text/css'>
+        <meta name="color-scheme" content="light dark">
+        <script>
+            (function () {
+                try {
+                    var theme = localStorage.getItem('restomatic-theme');
+                    if (theme === 'light' || theme === 'dark') {
+                        document.documentElement.dataset.theme = theme;
+                    }
+                } catch (e) { }
+            })();
+        </script>
         <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+        <script src="javascripts/theme.js" defer></script>
         <script src="javascripts/lightbox.js" defer></script>
     </head>
     <body>
         <section class="page-header">
+            <button class="theme-toggle" type="button" aria-label="Switch theme">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
             <div class="header-content">
                 <h1 class="project-name">Restomatic</h1>
-                <h2 class="project-tagline">Intuitive GUI for RESTful services</h2>
+                <h2 class="project-tagline">A desktop GUI client for REST APIs</h2>
                 <div class="download-buttons">
                     <a href="https://github.com/bitlama/restomatic/releases/download/v36/restomatic.jar"
-                       class="btn btn-primary">
-                        <span class="btn-icon">⬇</span>
-                        Download JAR
-                    </a>
+                       class="btn btn-primary">Download JAR</a>
                     <a href="https://github.com/bitlama/restomatic/releases/download/v36/Restomatic.dmg"
-                       class="btn btn-secondary">
-                        <span class="btn-icon">⬇</span>
-                        Download for macOS
-                    </a>
+                       class="btn btn-secondary">Download for macOS</a>
                 </div>
+                <p class="header-meta">Runs on Windows, macOS and Linux. Requires Java 11 or later.</p>
             </div>
         </section>
 
@@ -33,98 +54,80 @@
             <div class="screenshots-section">
                 <div class="screenshots-grid">
                     <div class="screenshot-item">
-                        <img src="images/request.png" alt="Request template" class="screenshot-img" data-src="images/request.png">
+                        <img src="images/request.png" alt="Request template" class="screenshot-img">
                     </div>
                     <div class="screenshot-item">
-                        <img src="images/endpoint.png" alt="Endpoint" class="screenshot-img" data-src="images/endpoint.png">
+                        <img src="images/endpoint.png" alt="Endpoint" class="screenshot-img">
                     </div>
                 </div>
             </div>
 
             <!-- Lightbox Modal -->
             <div id="lightbox-modal" class="lightbox-modal">
-                <span class="lightbox-close">&times;</span>
+                <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
                 <img class="lightbox-content" id="lightbox-img">
                 <div class="lightbox-caption" id="lightbox-caption"></div>
             </div>
 
             <div class="features-section">
-                <h1 class="section-title">Features</h1>
+                <h2 class="section-title">Features</h2>
                 <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h2>Request templates</h2>
-                        </div>
-                        <div class="feature-content">
-                            <ul>
-                                <li>Define path and query parameters.</li>
-                                <li>Define request headers.</li>
-                                <li>Support various request body types: text, form, multipart, and file.</li>
-                                <li>Dynamically organise the request hierarchy as the request path changes.</li>
-                                <li>Perform seamless searches.</li>
-                                <li>Use temporary request templates to experiment without modifying the original template.</li>
-                                <li>View JSON responses as a tree.</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <section class="feature">
+                        <h3>Request templates</h3>
+                        <ul>
+                            <li>Define path and query parameters.</li>
+                            <li>Define request headers.</li>
+                            <li>Support various request body types: text, form, multipart, and file.</li>
+                            <li>Dynamically organise the request hierarchy as the request path changes.</li>
+                            <li>Search across requests.</li>
+                            <li>Use temporary request templates to experiment without modifying the original template.</li>
+                            <li>View JSON responses as a tree.</li>
+                        </ul>
+                    </section>
 
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h2>Targets</h2>
-                        </div>
-                        <div class="feature-content">
-                            <ul>
-                                <li>Define headers to apply to every request sent to a target.</li>
-                                <li>Assign colors to visually distinguish each target.</li>
-                                <li>Override headers for specific context paths within a target.</li>
-                                <li>View and modify cookies received during request execution.</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <section class="feature">
+                        <h3>Targets</h3>
+                        <ul>
+                            <li>Define headers to apply to every request sent to a target.</li>
+                            <li>Assign colours to visually distinguish each target.</li>
+                            <li>Override headers for specific context paths within a target.</li>
+                            <li>View and modify cookies received during request execution.</li>
+                        </ul>
+                    </section>
 
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h2>Authenticators</h2>
-                        </div>
-                        <div class="feature-content">
-                            <ul>
-                                <li>HTTP Basic authentication.</li>
-                                <li>Custom authentication scenarios using JavaScript.</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <section class="feature">
+                        <h3>Authenticators</h3>
+                        <ul>
+                            <li>HTTP Basic authentication.</li>
+                            <li>Custom authentication scenarios using JavaScript.</li>
+                        </ul>
+                    </section>
 
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h2>Profiles</h2>
-                        </div>
-                        <div class="feature-content">
-                            <ul>
-                                <li>Store environment-specific data in profile variables.</li>
-                                <li>Enable multiple profiles (e.g., "User Joe" and "Target dev2").</li>
-                                <li>Substitute profile variables using Handlebars expressions.</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <section class="feature">
+                        <h3>Profiles</h3>
+                        <ul>
+                            <li>Store environment-specific data in profile variables.</li>
+                            <li>Enable multiple profiles (e.g., "User Joe" and "Target dev2").</li>
+                            <li>Substitute profile variables using Handlebars expressions.</li>
+                        </ul>
+                    </section>
                 </div>
             </div>
 
             <div class="faq-section">
-                <h1 class="section-title">FAQ</h1>
+                <h2 class="section-title">FAQ</h2>
                 <div class="faq-list">
                     <details class="faq-item">
                         <summary class="faq-question">
-                            <span>How to run Restomatic?</span>
+                            <span>How do I run Restomatic?</span>
                             <span class="faq-icon">+</span>
                         </summary>
                         <div class="faq-answer">
                             <p>
-                                Restomatic requires the latest version of
-                                <a href="https://www.oracle.com/java/technologies/javase-downloads.html">Java 11</a> to run.
+                                Restomatic requires Java 11 or later
+                                (<a href="https://www.oracle.com/java/technologies/javase-downloads.html">download</a>).
                             </p>
-                            <p>
-                                Execute the following command after installing Java Runtime Environment:
-                            </p>
+                            <p>After installing Java, run:</p>
                             <pre><code>java -jar restomatic.jar</code></pre>
                         </div>
                     </details>
@@ -135,9 +138,8 @@
                         </summary>
                         <div class="faq-answer">
                             <p>
-                                Restomatic regularly checks for updates by querying GitHub for the latest release.
-                                A paranoid person might worry that sensitive information is being sent during the update check.
-                                But don't worry — just open the application settings (Workspace → Settings) and disable update checks.
+                                Restomatic periodically checks GitHub for the latest release.
+                                You can disable update checks in the application settings (Workspace → Settings).
                             </p>
                         </div>
                     </details>
@@ -148,8 +150,8 @@
                         </summary>
                         <div class="faq-answer">
                             <p>
-                                Feel free to <a href="https://github.com/bitlama/restomatic/issues/new">report</a>
-                                bugs or feature requests.
+                                Feel free to <a href="https://github.com/bitlama/restomatic/issues/new">report bugs</a>
+                                or request features.
                             </p>
                         </div>
                     </details>
@@ -160,8 +162,8 @@
                         </summary>
                         <div class="faq-answer">
                             <p>
-                                Check <a href="demo/github">this one</a>. This example showcases a subset of
-                                <a href="https://developer.github.com/v3/">GitHub REST API</a>.
+                                Check <a href="demo/github">this one</a>. The example showcases a subset of
+                                the <a href="https://docs.github.com/rest">GitHub REST API</a>.
                                 After opening the workspace file, change the values of the "token" and "userId" parameters
                                 inside the "auth info" profile.
                             </p>
@@ -171,7 +173,7 @@
             </div>
 
             <div class="demo-section">
-                <h1 class="section-title">Demo</h1>
+                <h2 class="section-title">Demo</h2>
                 <div class="video-container">
                     <video controls>
                         <source src="images/example-workflow.webm" type="video/webm">
@@ -181,5 +183,11 @@
             </div>
 
         </section>
+
+        <footer class="site-footer">
+            <a href="https://github.com/bitlama/restomatic/releases">All releases</a>
+            <a href="https://github.com/bitlama/restomatic/issues">Report an issue</a>
+            <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache Licence 2.0</a>
+        </footer>
     </body>
 </html>
