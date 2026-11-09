@@ -3,40 +3,61 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalImg = document.getElementById('lightbox-img');
     const captionText = document.getElementById('lightbox-caption');
     const closeBtn = document.querySelector('.lightbox-close');
-    const screenshotImgs = document.querySelectorAll('.screenshot-img');
+    const triggers = document.querySelectorAll('.screenshot-trigger');
 
-    // Open modal when clicking on a screenshot
-    screenshotImgs.forEach(function(img) {
-        img.addEventListener('click', function() {
+    if (!modal || !modalImg || !captionText || !closeBtn) {
+        return;
+    }
+
+    let lastFocused = null;
+
+    triggers.forEach(function(trigger) {
+        trigger.addEventListener('click', function() {
+            const img = trigger.querySelector('img');
+            if (!img) {
+                return;
+            }
+
+            lastFocused = trigger;
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            captionText.textContent = trigger.dataset.caption || img.alt;
             modal.classList.add('show');
-            modalImg.src = this.src;
-            captionText.textContent = this.alt;
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus();
         });
     });
 
-    // Close modal when clicking the close button
-    closeBtn.addEventListener('click', function() {
-        closeModal();
-    });
+    closeBtn.addEventListener('click', closeModal);
 
-    // Close modal when clicking outside the image
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             closeModal();
         }
     });
 
-    // Close modal with Escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
+        if (!modal.classList.contains('show')) {
+            return;
+        }
+
+        if (e.key === 'Escape') {
             closeModal();
+        } else if (e.key === 'Tab') {
+            // Only the close button is focusable inside the dialog.
+            e.preventDefault();
+            closeBtn.focus();
         }
     });
 
     function closeModal() {
         modal.classList.remove('show');
-        document.body.style.overflow = ''; // Restore scrolling
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocused) {
+            lastFocused.focus();
+            lastFocused = null;
+        }
     }
 });
-

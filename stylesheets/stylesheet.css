@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body, h1, h2, h3, p, ul, li, pre {
+body, h1, h2, h3, p, ul, ol, li, pre {
     margin: 0;
 }
 
@@ -68,6 +68,7 @@ a:hover {
 
 a:focus-visible,
 summary:focus-visible,
+.screenshot-trigger:focus-visible,
 .lightbox-close:focus-visible,
 .theme-toggle:focus-visible {
     outline: 2px solid var(--accent);
@@ -89,8 +90,8 @@ summary:focus-visible,
     right: 1.25rem;
     display: grid;
     place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
     padding: 0;
     background: transparent;
     border: 0;
@@ -184,6 +185,13 @@ summary:focus-visible,
     color: rgba(255, 255, 255, 0.55);
 }
 
+.header-meta a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    white-space: nowrap;
+}
+
 /* Main */
 .main-content {
     max-width: 1040px;
@@ -242,7 +250,12 @@ summary:focus-visible,
     gap: 1.25rem;
 }
 
-.screenshot-item {
+.screenshot-trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
     cursor: zoom-in;
 }
 
@@ -254,6 +267,7 @@ summary:focus-visible,
 /* FAQ */
 .faq-item {
     border-top: 1px solid var(--border);
+    scroll-margin-top: 2rem;
 }
 
 .faq-item:last-child {
@@ -272,6 +286,12 @@ summary:focus-visible,
     list-style: none;
 }
 
+.faq-question h3 {
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
+}
+
 .faq-question::-webkit-details-marker {
     display: none;
 }
@@ -283,12 +303,22 @@ summary:focus-visible,
 .faq-icon {
     color: var(--muted);
     font-size: 1.25rem;
+    line-height: 1;
     flex-shrink: 0;
-    transition: transform 0.15s ease;
+    transition: color 0.15s ease;
 }
 
+.faq-icon::before {
+    content: "+";
+}
+
+.faq-question:hover .faq-icon,
 .faq-item[open] .faq-icon {
-    transform: rotate(45deg);
+    color: var(--text);
+}
+
+.faq-item[open] .faq-icon::before {
+    content: "−";
 }
 
 .faq-answer {
@@ -296,11 +326,30 @@ summary:focus-visible,
     color: var(--muted);
 }
 
+.faq-answer a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.faq-answer strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
 .faq-answer p {
     margin-bottom: 0.75rem;
 }
 
-.faq-answer p:last-child {
+.faq-answer ol {
+    margin: 0 0 0.75rem;
+    padding-left: 1.4rem;
+}
+
+.faq-answer li {
+    margin: 0.3rem 0;
+}
+
+.faq-answer > :last-child {
     margin-bottom: 0;
 }
 
@@ -341,6 +390,60 @@ pre code {
     padding: 0;
 }
 
+.code-block {
+    display: flex;
+    align-items: center;
+    background: var(--subtle);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.code-block pre {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0.9rem 0 0.9rem 1.1rem;
+}
+
+.copy-button {
+    flex: none;
+    margin: 0 0.65rem 0 0.75rem;
+    padding: 0.2rem 0.5rem;
+    font: inherit;
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--page-bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.copy-button:hover {
+    color: var(--text);
+    border-color: var(--muted);
+}
+
+.copy-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* Lightbox */
 .lightbox-modal {
     display: none;
@@ -363,6 +466,16 @@ pre code {
     to { opacity: 1; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .lightbox-modal.show {
+        animation: none;
+    }
+
+    .faq-icon {
+        transition: none;
+    }
+}
+
 .lightbox-content {
     max-width: 92%;
     max-height: 90vh;
@@ -374,6 +487,10 @@ pre code {
     position: absolute;
     top: 0.75rem;
     right: 1.25rem;
+    display: grid;
+    place-items: center;
+    min-width: 44px;
+    min-height: 44px;
     background: none;
     border: 0;
     padding: 0.25rem;
@@ -395,6 +512,8 @@ pre code {
     bottom: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
+    width: max-content;
+    max-width: min(92%, 60ch);
     color: #f1f1f1;
     background: rgba(0, 0, 0, 0.6);
     padding: 0.4rem 0.9rem;
@@ -409,6 +528,7 @@ pre code {
     margin: 0 auto;
     padding: 0 1.5rem 3rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
     font-size: 0.9rem;
